@@ -9,50 +9,51 @@ with open("menu.json", "r", encoding="utf-8") as f:
     data = json.load(f)
     menu = data["menu"]
 
-# 🔎 Exact-match search — no AI, fully deterministic
+# Function to search menu intelligently
 def search_menu(query):
-    query = query.lower().strip()
+    query = query.lower()
+    results = []
 
     for item in menu:
-        name = item["name"].lower()
-        keywords = [k.lower() for k in item.get("keywords", [])]
+        score = 0
 
-        # Exact match with the menu item name
-        if query == name:
-            return [item]
+        # Exact match gets higher score
+        if item["name"].lower() in query:
+            score += 3
 
-        # Exact match with any keyword
-        if query in keywords:
-            return [item]
+        # Check keywords
+        for keyword in item.get("keywords", []):
+            if keyword.lower() in query:
+                score += 1
 
-    # No matches found
-    return []
+        if score > 0:
+            results.append((score, item))
 
-# 🏠 Home route
+    # Sort by score descending
+    results.sort(reverse=True, key=lambda x: x[0])
+    return [item for _, item in results[:3]]  # top 3 results
+
+# Home route
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# ❓ Ask route
+# Ask route
 @app.route("/ask", methods=["POST"])
 def ask():
     user_input = request.json.get("question", "")
     matches = search_menu(user_input)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn’t find anything matching that exactly."})
+        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
 
-    item = matches[0]
+    response = []
+    for item in matches:
+        response.append(f"{item['name']} — ${item['price']}")
 
-    response = (
-        f"{item['name']} — ${item['price']}\n"
-        f"Category: {item['category']}\n"
-        f"{item['description']}"
-    )
+    return jsonify({"answer": "\n".join(response)})
 
-    return jsonify({"answer": response})
-
-# 🚀 Main entry point with port handling
+# Main entry point
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
     app.run(host="0.0.0.0", port=port)       # debug=False for production
