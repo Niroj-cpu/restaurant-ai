@@ -9,63 +9,29 @@ with open("menu.json", "r", encoding="utf-8") as f:
     data = json.load(f)
     menu = data["menu"]
 
-
-# 🔎 Intelligent deterministic search (NO AI)
+# 🔎 Exact-match search — no AI, fully deterministic
 def search_menu(query):
     query = query.lower().strip()
-    query_words = set(query.split())
-    best_match = None
-    best_score = 0
 
     for item in menu:
-        score = 0
         name = item["name"].lower()
-        category = item.get("category", "").lower()
         keywords = [k.lower() for k in item.get("keywords", [])]
-        ingredients = [i.lower() for i in item.get("ingredients", [])]
 
-        # 1️⃣ Exact full name match (highest priority)
+        # Exact match with the menu item name
         if query == name:
             return [item]
 
-        # 2️⃣ Name contains full query
-        if query in name:
-            score += 10
+        # Exact match with any keyword
+        if query in keywords:
+            return [item]
 
-        # 3️⃣ All query words appear in name
-        if all(word in name for word in query_words):
-            score += 8
-
-        # 4️⃣ Keyword matching
-        for keyword in keywords:
-            if keyword in query:
-                score += 5
-
-        # 5️⃣ Category match
-        if category and category in query:
-            score += 3
-
-        # 6️⃣ Ingredient match
-        for word in query_words:
-            if word in ingredients:
-                score += 2
-
-        # Keep best scoring item
-        if score > best_score:
-            best_score = score
-            best_match = item
-
-    if best_match:
-        return [best_match]
-
+    # No matches found
     return []
-
 
 # 🏠 Home route
 @app.route("/")
 def home():
     return render_template("index.html")
-
 
 # ❓ Ask route
 @app.route("/ask", methods=["POST"])
@@ -74,7 +40,7 @@ def ask():
     matches = search_menu(user_input)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
+        return jsonify({"answer": "Sorry, I couldn’t find anything matching that exactly."})
 
     item = matches[0]
 
@@ -86,8 +52,7 @@ def ask():
 
     return jsonify({"answer": response})
 
-# Main entry point
+# 🚀 Main entry point with port handling
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
     app.run(host="0.0.0.0", port=port)       # debug=False for production
-
