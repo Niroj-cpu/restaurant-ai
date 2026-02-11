@@ -4,56 +4,77 @@ import os
 
 app = Flask(__name__)
 
-# Load menu data
+# Load menu data safely
 with open("menu.json", "r", encoding="utf-8") as f:
     data = json.load(f)
     menu = data["menu"]
 
-# Function to search menu intelligently
+
+def normalize(text):
+    """Lowercase and split text into words"""
+    return set(text.lower().replace("-", " ").split())
+
+
 def search_menu(query):
-    query = query.lower()
+    query_words = normalize(query)
     results = []
 
     for item in menu:
         score = 0
 
-        # Exact match gets higher score
-        if item["name"].lower() in query:
-            score += 3
+        name_words = normalize(item["name"])
+        keyword_words = set()
 
-        # Check keywords
-        for keyword in item.get("keywords", []):
-            if keyword.lower() in query:
-                score += 1
+        for kw in item.get("keywords", []):
+            keyword_words |= normalize(kw)
+
+        # Exact word matches
+        name_matches = query_words & name_words
+        keyword_matches = query_words & keyword_words
+
+        # Strongly prioritize name matches
+        score += len(name_matches) * 5
+        score += len(keyword_matches) * 2
 
         if score > 0:
             results.append((score, item))
 
     # Sort by score descending
-    results.sort(reverse=True, key=lambda x: x[0])
-    return [item for _, item in results[:3]]  # top 3 results
+    results.sort(key=lambda x: x[0], reverse=True)
 
-# Home route
+    return [item for _, item in results[:3]]
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Ask route
+
 @app.route("/ask", methods=["POST"])
 def ask():
-    user_input = request.json.get("question", "")
+    user_input = request.json.get("question", "").strip()
+
+    if not user_input:
+        return jsonify({"answer": "Please ask about a menu item."})
+
     matches = search_menu(user_input)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
+        return jsonify({
+            "answer": "Sorry, I couldn’t find anything matching that."
+        })
 
-    response = []
+    response_lines = []
     for item in matches:
-        response.append(f"{item['name']} — ${item['price']}")
+        response_lines.append(
+            f"{item['name']} — ${item['price']}"
+        )
 
-    return jsonify({"answer": "\n".join(response)})
+    return jsonify({
+        "answer": "\n".join(response_lines)
+    })
 
-# Main entry point
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
-    app.run(host="0.0.0.0", port=port)       # debug=False for production
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
