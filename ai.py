@@ -9,36 +9,65 @@ with open("menu.json", "r", encoding="utf-8") as f:
     data = json.load(f)
     menu = data["menu"]
 
-# Function to search menu intelligently
+
+# 🔎 Intelligent deterministic search (NO AI)
 def search_menu(query):
-    query = query.lower()
-    results = []
+    query = query.lower().strip()
+    query_words = set(query.split())
+    best_match = None
+    best_score = 0
 
     for item in menu:
         score = 0
+        name = item["name"].lower()
+        category = item.get("category", "").lower()
+        keywords = [k.lower() for k in item.get("keywords", [])]
+        ingredients = [i.lower() for i in item.get("ingredients", [])]
 
-        # Exact match gets higher score
-        if item["name"].lower() in query:
+        # 1️⃣ Exact full name match (highest priority)
+        if query == name:
+            return [item]
+
+        # 2️⃣ Name contains full query
+        if query in name:
+            score += 10
+
+        # 3️⃣ All query words appear in name
+        if all(word in name for word in query_words):
+            score += 8
+
+        # 4️⃣ Keyword matching
+        for keyword in keywords:
+            if keyword in query:
+                score += 5
+
+        # 5️⃣ Category match
+        if category and category in query:
             score += 3
 
-        # Check keywords
-        for keyword in item.get("keywords", []):
-            if keyword.lower() in query:
-                score += 1
+        # 6️⃣ Ingredient match
+        for word in query_words:
+            if word in ingredients:
+                score += 2
 
-        if score > 0:
-            results.append((score, item))
+        # Keep best scoring item
+        if score > best_score:
+            best_score = score
+            best_match = item
 
-    # Sort by score descending
-    results.sort(reverse=True, key=lambda x: x[0])
-    return [item for _, item in results[:3]]  # top 3 results
+    if best_match:
+        return [best_match]
 
-# Home route
+    return []
+
+
+# 🏠 Home route
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Ask route
+
+# ❓ Ask route
 @app.route("/ask", methods=["POST"])
 def ask():
     user_input = request.json.get("question", "")
@@ -47,13 +76,18 @@ def ask():
     if not matches:
         return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
 
-    response = []
-    for item in matches:
-        response.append(f"{item['name']} — ${item['price']}")
+    item = matches[0]
 
-    return jsonify({"answer": "\n".join(response)})
+    response = (
+        f"{item['name']} — ${item['price']}\n"
+        f"Category: {item['category']}\n"
+        f"{item['description']}"
+    )
+
+    return jsonify({"answer": response})
 
 # Main entry point
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
     app.run(host="0.0.0.0", port=port)       # debug=False for production
+
