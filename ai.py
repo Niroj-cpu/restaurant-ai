@@ -4,44 +4,47 @@ import os
 
 app = Flask(__name__)
 
-# Load menu data safely
 with open("menu.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-    menu = data["menu"]
+    menu = json.load(f)["menu"]
+
+# Words that should NOT be required
+STOP_WORDS = {
+    "with", "and", "or", "the", "a", "an",
+    "pcs", "piece", "pieces", "plate"
+}
 
 
 def normalize(text):
-    """Lowercase and split text into words"""
-    return set(text.lower().replace("-", " ").split())
+    return text.lower().replace("-", " ").split()
 
 
 def search_menu(query):
-    query_words = normalize(query)
+    query_words = set(normalize(query)) - STOP_WORDS
     results = []
 
     for item in menu:
-        score = 0
+        name_words = set(normalize(item["name"]))
 
-        name_words = normalize(item["name"])
         keyword_words = set()
-
         for kw in item.get("keywords", []):
-            keyword_words |= normalize(kw)
+            keyword_words.update(normalize(kw))
 
-        # Exact word matches
-        name_matches = query_words & name_words
-        keyword_matches = query_words & keyword_words
+        all_item_words = name_words | keyword_words
 
-        # Strongly prioritize name matches
-        score += len(name_matches) * 5
-        score += len(keyword_matches) * 2
+        # ❗ HARD FILTER:
+        # At least ONE important query word MUST be in the NAME
+        core_match = query_words & name_words
+        if not core_match:
+            continue  # instantly reject (this fixes chicken burger → momo)
 
-        if score > 0:
-            results.append((score, item))
+        # Scoring (only after passing filter)
+        score = 0
+        score += len(core_match) * 10
+        score += len(query_words & keyword_words) * 3
 
-    # Sort by score descending
+        results.append((score, item))
+
     results.sort(key=lambda x: x[0], reverse=True)
-
     return [item for _, item in results[:3]]
 
 
@@ -64,14 +67,10 @@ def ask():
             "answer": "Sorry, I couldn’t find anything matching that."
         })
 
-    response_lines = []
-    for item in matches:
-        response_lines.append(
-            f"{item['name']} — ${item['price']}"
-        )
-
     return jsonify({
-        "answer": "\n".join(response_lines)
+        "answer": "\n".join(
+            f"{item['name']} — ${item['price']}" for item in matches
+        )
     })
 
 
