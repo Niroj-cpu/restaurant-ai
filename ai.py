@@ -8,92 +8,63 @@ app = Flask(__name__)
 with open("menu.json", "r", encoding="utf-8") as f:
     menu = json.load(f)["menu"]
 
-# =========================
-# NORMALIZATION RULES
-# =========================
-
 STOP_WORDS = {
-    "with", "and", "or", "the", "a", "an", "pcs", "pc",
-    "pieces", "piece", "plate", "order", "please"
+    "with", "and", "or", "the", "a", "an",
+    "pcs", "pc", "piece", "pieces", "order", "please"
 }
 
-SYNONYMS = {
-    "veg": "vegetable",
-    "veggie": "vegetable",
-    "vegan": "vegetable",
-    "chkn": "chicken",
-    "fried": "fried",
-    "grilled": "grill",
-}
-
-CATEGORY_WORDS = {
-    "momo", "burger", "salad", "pasta", "noodle", "soup"
+FOOD_NOUNS = {
+    "burger", "momo", "salad", "pasta", "noodle",
+    "soup", "wrap", "rice", "bowl"
 }
 
 def normalize(text):
     text = text.lower()
     text = re.sub(r"[^a-z0-9\s]", "", text)
     words = text.split()
+    return [w for w in words if w not in STOP_WORDS]
 
-    normalized = []
-    for w in words:
-        if w in STOP_WORDS:
-            continue
-        w = SYNONYMS.get(w, w)
-        if w.endswith("s"):
-            w = w[:-1]  # singularize
-        normalized.append(w)
-
-    return normalized
-
-
-# =========================
-# CORE SEARCH ENGINE
-# =========================
+def extract_primary_noun(words):
+    """Return the last food noun mentioned"""
+    for w in reversed(words):
+        if w in FOOD_NOUNS:
+            return w
+    return None
 
 def search_menu(query):
-    query_words = set(normalize(query))
+    query_words = normalize(query)
+    primary_noun = extract_primary_noun(query_words)
+
     results = []
 
-    # Detect category intent (burger vs momo etc.)
-    query_categories = query_words & CATEGORY_WORDS
-
     for item in menu:
-        name_words = set(normalize(item["name"]))
+        name_words = normalize(item["name"])
 
-        keyword_words = set()
+        # 🚨 HARD LOCK: primary noun MUST be in name
+        if primary_noun and primary_noun not in name_words:
+            continue
+
+        keyword_words = []
         for kw in item.get("keywords", []):
-            keyword_words.update(normalize(kw))
+            keyword_words.extend(normalize(kw))
 
-        item_words = name_words | keyword_words
+        all_words = set(name_words + keyword_words)
 
-        # 🚨 HARD CATEGORY FILTER
-        if query_categories:
-            if not (query_categories & name_words):
-                continue  # reject completely
-
-        # 🚨 INTENT COVERAGE RULE
-        matched = query_words & item_words
+        matched = set(query_words) & all_words
         coverage = len(matched) / len(query_words)
 
-        # Must satisfy at least 70% of intent
-        if coverage < 0.7:
+        if coverage < 0.6:
             continue
 
         score = (
-            len(matched) * 10 +
-            len(query_categories & name_words) * 20
+            coverage * 100 +
+            (10 if primary_noun in name_words else 0)
         )
 
         results.append((score, item))
 
     results.sort(key=lambda x: x[0], reverse=True)
     return [item for _, item in results[:3]]
-
-
-# =========================
-# ROUTES
-# =========================
 
 @app.route("/")
 def home():
@@ -102,16 +73,13 @@ def home():
 @app.route("/ask", methods=["POST"])
 def ask():
     question = request.json.get("question", "").strip()
-
     if not question:
         return jsonify({"answer": "Please ask about a menu item."})
 
     matches = search_menu(question)
 
     if not matches:
-        return jsonify({
-            "answer": "Sorry, I couldn’t find anything matching that."
-        })
+        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
 
     return jsonify({
         "answer": "\n".join(
@@ -119,11 +87,6 @@ def ask():
             for item in matches
         )
     })
-
-
-# =========================
-# RUN
-# =========================
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
