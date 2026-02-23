@@ -1,26 +1,62 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import os
+import re
 
 app = Flask(__name__)
 
 with open("menu.json", "r", encoding="utf-8") as f:
     menu = json.load(f)["menu"]
 
-# Words that should NOT be required
+# =========================
+# NORMALIZATION RULES
+# =========================
+
 STOP_WORDS = {
-    "with", "and", "or", "the", "a", "an",
-    "pcs", "piece", "pieces", "plate"
+    "with", "and", "or", "the", "a", "an", "pcs", "pc",
+    "pieces", "piece", "plate", "order", "please"
 }
 
+SYNONYMS = {
+    "veg": "vegetable",
+    "veggie": "vegetable",
+    "vegan": "vegetable",
+    "chkn": "chicken",
+    "fried": "fried",
+    "grilled": "grill",
+}
+
+CATEGORY_WORDS = {
+    "momo", "burger", "salad", "pasta", "noodle", "soup"
+}
 
 def normalize(text):
-    return text.lower().replace("-", " ").split()
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", "", text)
+    words = text.split()
 
+    normalized = []
+    for w in words:
+        if w in STOP_WORDS:
+            continue
+        w = SYNONYMS.get(w, w)
+        if w.endswith("s"):
+            w = w[:-1]  # singularize
+        normalized.append(w)
+
+    return normalized
+
+
+# =========================
+# CORE SEARCH ENGINE
+# =========================
 
 def search_menu(query):
-    query_words = set(normalize(query)) - STOP_WORDS
+    query_words = set(normalize(query))
     results = []
+
+    # Detect category intent (burger vs momo etc.)
+    query_categories = query_words & CATEGORY_WORDS
 
     for item in menu:
         name_words = set(normalize(item["name"]))
@@ -29,18 +65,25 @@ def search_menu(query):
         for kw in item.get("keywords", []):
             keyword_words.update(normalize(kw))
 
-        all_item_words = name_words | keyword_words
+        item_words = name_words | keyword_words
 
-        # ❗ HARD FILTER:
-        # At least ONE important query word MUST be in the NAME
-        core_match = query_words & name_words
-        if not core_match:
-            continue  # instantly reject (this fixes chicken burger → momo)
+        # 🚨 HARD CATEGORY FILTER
+        if query_categories:
+            if not (query_categories & name_words):
+                continue  # reject completely
 
-        # Scoring (only after passing filter)
-        score = 0
-        score += len(core_match) * 10
-        score += len(query_words & keyword_words) * 3
+        # 🚨 INTENT COVERAGE RULE
+        matched = query_words & item_words
+        coverage = len(matched) / len(query_words)
+
+        # Must satisfy at least 70% of intent
+        if coverage < 0.7:
+            continue
+
+        score = (
+            len(matched) * 10 +
+            len(query_categories & name_words) * 20
+        )
 
         results.append((score, item))
 
@@ -48,19 +91,22 @@ def search_menu(query):
     return [item for _, item in results[:3]]
 
 
+# =========================
+# ROUTES
+# =========================
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
 @app.route("/ask", methods=["POST"])
 def ask():
-    user_input = request.json.get("question", "").strip()
+    question = request.json.get("question", "").strip()
 
-    if not user_input:
+    if not question:
         return jsonify({"answer": "Please ask about a menu item."})
 
-    matches = search_menu(user_input)
+    matches = search_menu(question)
 
     if not matches:
         return jsonify({
@@ -69,10 +115,15 @@ def ask():
 
     return jsonify({
         "answer": "\n".join(
-            f"{item['name']} — ${item['price']}" for item in matches
+            f"{item['name']} — ${item['price']}"
+            for item in matches
         )
     })
 
+
+# =========================
+# RUN
+# =========================
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
