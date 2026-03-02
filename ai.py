@@ -1,59 +1,130 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import os
+import re
 
 app = Flask(__name__)
 
-# Load menu data
 with open("menu.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-    menu = data["menu"]
+    menu = json.load(f)["menu"]
 
-# Function to search menu intelligently
+# =========================
+# NORMALIZATION RULES
+# =========================
+
+STOP_WORDS = {
+    "with", "and", "or", "the", "a", "an", "pcs", "pc",
+    "pieces", "piece", "plate", "order", "please"
+}
+
+SYNONYMS = {
+    "veg": "vegetable",
+    "veggie": "vegetable",
+    "vegan": "vegetable",
+    "chkn": "chicken",
+    "fried": "fried",
+    "grilled": "grill",
+}
+
+CATEGORY_WORDS = {
+    "momo", "burger", "salad", "pasta", "noodle", "soup"
+}
+
+def normalize(text):
+    text = text.lower()
+    text = re.sub(r"[^a-z0-9\s]", "", text)
+    words = text.split()
+
+    normalized = []
+    for w in words:
+        if w in STOP_WORDS:
+            continue
+        w = SYNONYMS.get(w, w)
+        if w.endswith("s"):
+            w = w[:-1]  # singularize
+        normalized.append(w)
+
+    return normalized
+
+
+# =========================
+# CORE SEARCH ENGINE
+# =========================
+
 def search_menu(query):
-    query = query.lower()
+    query_words = set(normalize(query))
     results = []
 
+    # Detect category intent (burger vs momo etc.)
+    query_categories = query_words & CATEGORY_WORDS
+
     for item in menu:
-        score = 0
+        name_words = set(normalize(item["name"]))
 
-        # Exact match gets higher score
-        if item["name"].lower() in query:
-            score += 3
+        keyword_words = set()
+        for kw in item.get("keywords", []):
+            keyword_words.update(normalize(kw))
 
-        # Check keywords
-        for keyword in item.get("keywords", []):
-            if keyword.lower() in query:
-                score += 1
+        item_words = name_words | keyword_words
 
-        if score > 0:
-            results.append((score, item))
+        # 🚨 HARD CATEGORY FILTER
+        if query_categories:
+            if not (query_categories & name_words):
+                continue  # reject completely
 
-    # Sort by score descending
-    results.sort(reverse=True, key=lambda x: x[0])
-    return [item for _, item in results[:3]]  # top 3 results
+        # 🚨 INTENT COVERAGE RULE
+        matched = query_words & item_words
+        coverage = len(matched) / len(query_words)
 
-# Home route
+        # Must satisfy at least 70% of intent
+        if coverage < 0.7:
+            continue
+
+        score = (
+            len(matched) * 10 +
+            len(query_categories & name_words) * 20
+        )
+
+        results.append((score, item))
+
+    results.sort(key=lambda x: x[0], reverse=True)
+    return [item for _, item in results[:3]]
+
+
+# =========================
+# ROUTES
+# =========================
+
 @app.route("/")
 def home():
     return render_template("index.html")
 
-# Ask route
 @app.route("/ask", methods=["POST"])
 def ask():
-    user_input = request.json.get("question", "")
-    matches = search_menu(user_input)
+    question = request.json.get("question", "").strip()
+
+    if not question:
+        return jsonify({"answer": "Please ask about a menu item."})
+
+    matches = search_menu(question)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
+        return jsonify({
+            "answer": "Sorry, I couldn’t find anything matching that."
+        })
 
-    response = []
-    for item in matches:
-        response.append(f"{item['name']} — ${item['price']}")
+    return jsonify({
+        "answer": "\n".join(
+            f"{item['name']} — ${item['price']}"
+            for item in matches
+        )
+    })
 
-    return jsonify({"answer": "\n".join(response)})
 
-# Main entry point
+# =========================
+# RUN
+# =========================
+
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
-    app.run(host="0.0.0.0", port=port)       # debug=False for production
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
