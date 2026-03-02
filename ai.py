@@ -1,92 +1,134 @@
 from flask import Flask, render_template, request, jsonify
 import json
 import os
-import re
 
 app = Flask(__name__)
 
 with open("menu.json", "r", encoding="utf-8") as f:
     menu = json.load(f)["menu"]
 
-STOP_WORDS = {
-    "with", "and", "or", "the", "a", "an",
-    "pcs", "pc", "piece", "pieces", "order", "please"
-}
+STOP_WORDS = ["with", "and", "or", "the", "a", "an", "pcs", "pc", "piece", "pieces", "order", "please"]
+FOOD_NOUNS = ["burger", "momo", "salad", "pasta", "noodle", "soup", "wrap", "rice", "bowl"]
 
-FOOD_NOUNS = {
-    "burger", "momo", "salad", "pasta", "noodle",
-    "soup", "wrap", "rice", "bowl"
-}
 
-def normalize(text):
+def clean_text(text):
     text = text.lower()
-    text = re.sub(r"[^a-z0-9\s]", "", text)
-    words = text.split()
-    return [w for w in words if w not in STOP_WORDS]
+    clean = ""
+    for char in text:
+        if char.isalpha() or char.isdigit() or char == " ":
+            clean += char
+    words = clean.split()
+    result = []
+    for word in words:
+        if word not in STOP_WORDS:
+            result.append(word)
+    return result
 
-def extract_primary_noun(words):
-    """Return the last food noun mentioned"""
-    for w in reversed(words):
-        if w in FOOD_NOUNS:
-            return w
+
+def find_food_noun(words):
+    i = len(words) - 1
+    while i >= 0:
+        if words[i] in FOOD_NOUNS:
+            return words[i]
+        i -= 1
     return None
 
+
+def words_match(query_words, item):
+    name_words = clean_text(item["name"])
+    keyword_words = []
+    for kw in item.get("keywords", []):
+        for word in clean_text(kw):
+            keyword_words.append(word)
+
+    all_words = name_words + keyword_words
+
+    matched_count = 0
+    for word in query_words:
+        if word in all_words:
+            matched_count += 1
+
+    if len(query_words) == 0:
+        return False
+
+    coverage = matched_count / len(query_words)
+    return coverage >= 0.6
+
+
+def noun_in_name(noun, item):
+    if noun is None:
+        return True
+    name_words = clean_text(item["name"])
+    return noun in name_words
+
+
 def search_menu(query):
-    query_words = normalize(query)
-    primary_noun = extract_primary_noun(query_words)
+    query_words = clean_text(query)
+    primary_noun = find_food_noun(query_words)
 
     results = []
 
     for item in menu:
-        name_words = normalize(item["name"])
-
-        # 🚨 HARD LOCK: primary noun MUST be in name
-        if primary_noun and primary_noun not in name_words:
+        if not noun_in_name(primary_noun, item):
             continue
 
-        keyword_words = []
-        for kw in item.get("keywords", []):
-            keyword_words.extend(normalize(kw))
-
-        all_words = set(name_words + keyword_words)
-
-        matched = set(query_words) & all_words
-        coverage = len(matched) / len(query_words)
-
-        if coverage < 0.6:
+        if not words_match(query_words, item):
             continue
 
-        score = (
-            coverage * 100 +
-            (10 if primary_noun in name_words else 0)
-        )
+        name_words = clean_text(item["name"])
+        score = 0
+
+        for word in query_words:
+            all_words = name_words
+            for kw in item.get("keywords", []):
+                for w in clean_text(kw):
+                    all_words.append(w)
+            if word in all_words:
+                score += 1
+
+        if primary_noun in name_words:
+            score += 10
 
         results.append((score, item))
 
-    results.sort(key=lambda x: x[0], reverse=True)
-    return [item for _, item in results[:3]]
+    # Sort by score (simple bubble sort)
+    for i in range(len(results)):
+        for j in range(i + 1, len(results)):
+            if results[j][0] > results[i][0]:
+                results[i], results[j] = results[j], results[i]
+
+    top_results = []
+    for i in range(min(3, len(results))):
+        top_results.append(results[i][1])
+
+    return top_results
+
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
+
 @app.route("/ask", methods=["POST"])
 def ask():
     question = request.json.get("question", "").strip()
+
     if not question:
         return jsonify({"answer": "Please ask about a menu item."})
 
     matches = search_menu(question)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
+        return jsonify({"answer": "Sorry, I couldn't find anything matching that."})
 
-    return jsonify({
-        "answer": "\n".join(
-            f"{item['name']} — ${item['price']}"
-            for item in matches
-        )
-    })
+    answer = ""
+    for item in matches:
+        if answer != "":
+            answer += "\n"
+        answer += item["name"] + " — $" + str(item["price"])
+
+    return jsonify({"answer": answer})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
