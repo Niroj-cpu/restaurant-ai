@@ -4,132 +4,56 @@ import os
 
 app = Flask(__name__)
 
+# Load menu data
 with open("menu.json", "r", encoding="utf-8") as f:
-    menu = json.load(f)["menu"]
+    data = json.load(f)
+    menu = data["menu"]
 
-STOP_WORDS = ["with", "and", "or", "the", "a", "an", "pcs", "pc", "piece", "pieces", "order", "please"]
-FOOD_NOUNS = ["burger", "momo", "salad", "pasta", "noodle", "soup", "wrap", "rice", "bowl"]
-
-
-def clean_text(text):
-    text = text.lower()
-    clean = ""
-    for char in text:
-        if char.isalpha() or char.isdigit() or char == " ":
-            clean += char
-    words = clean.split()
-    result = []
-    for word in words:
-        if word not in STOP_WORDS:
-            result.append(word)
-    return result
-
-
-def find_food_noun(words):
-    i = len(words) - 1
-    while i >= 0:
-        if words[i] in FOOD_NOUNS:
-            return words[i]
-        i -= 1
-    return None
-
-
-def words_match(query_words, item):
-    name_words = clean_text(item["name"])
-    keyword_words = []
-    for kw in item.get("keywords", []):
-        for word in clean_text(kw):
-            keyword_words.append(word)
-
-    all_words = name_words + keyword_words
-
-    matched_count = 0
-    for word in query_words:
-        if word in all_words:
-            matched_count += 1
-
-    if len(query_words) == 0:
-        return False
-
-    coverage = matched_count / len(query_words)
-    return coverage >= 0.6
-
-
-def noun_in_name(noun, item):
-    if noun is None:
-        return True
-    name_words = clean_text(item["name"])
-    return noun in name_words
-
-
+# Function to search menu intelligently
 def search_menu(query):
-    query_words = clean_text(query)
-    primary_noun = find_food_noun(query_words)
-
+    query = query.lower()
     results = []
 
     for item in menu:
-        if not noun_in_name(primary_noun, item):
-            continue
-
-        if not words_match(query_words, item):
-            continue
-
-        name_words = clean_text(item["name"])
         score = 0
 
-        for word in query_words:
-            all_words = name_words
-            for kw in item.get("keywords", []):
-                for w in clean_text(kw):
-                    all_words.append(w)
-            if word in all_words:
+        # Exact match gets higher score
+        if item["name"].lower() in query:
+            score += 3
+
+        # Check keywords
+        for keyword in item.get("keywords", []):
+            if keyword.lower() in query:
                 score += 1
 
-        if primary_noun in name_words:
-            score += 10
+        if score > 0:
+            results.append((score, item))
 
-        results.append((score, item))
+    # Sort by score descending
+    results.sort(reverse=True, key=lambda x: x[0])
+    return [item for _, item in results[:3]]  # top 3 results
 
-    # Sort by score (simple bubble sort)
-    for i in range(len(results)):
-        for j in range(i + 1, len(results)):
-            if results[j][0] > results[i][0]:
-                results[i], results[j] = results[j], results[i]
-
-    top_results = []
-    for i in range(min(3, len(results))):
-        top_results.append(results[i][1])
-
-    return top_results
-
-
+# Home route
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
+# Ask route
 @app.route("/ask", methods=["POST"])
 def ask():
-    question = request.json.get("question", "").strip()
-
-    if not question:
-        return jsonify({"answer": "Please ask about a menu item."})
-
-    matches = search_menu(question)
+    user_input = request.json.get("question", "")
+    matches = search_menu(user_input)
 
     if not matches:
-        return jsonify({"answer": "Sorry, I couldn't find anything matching that."})
+        return jsonify({"answer": "Sorry, I couldn’t find anything matching that."})
 
-    answer = ""
+    response = []
     for item in matches:
-        if answer != "":
-            answer += "\n"
-        answer += item["name"] + " — $" + str(item["price"])
+        response.append(f"{item['name']} — ${item['price']}")
 
-    return jsonify({"answer": answer})
+    return jsonify({"answer": "\n".join(response)})
 
-
+# Main entry point
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render sets this automatically
+    app.run(host="0.0.0.0", port=port)       # debug=False for production
