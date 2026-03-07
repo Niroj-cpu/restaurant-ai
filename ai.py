@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import json
 import os
 import re
+from difflib import SequenceMatcher
 
 app = Flask(__name__)
 
@@ -9,87 +10,105 @@ with open("menu.json", "r", encoding="utf-8") as f:
     menu = json.load(f)["menu"]
 
 # =========================
-# NORMALIZATION RULES
+# AI MATCHING HELPERS
 # =========================
 
-STOP_WORDS = {
-    "with", "and", "or", "the", "a", "an", "pcs", "pc",
-    "pieces", "piece", "plate", "order", "please"
-}
+def similarity(a, b):
+    return SequenceMatcher(None, a.lower(), b.lower()).ratio()
 
-SYNONYMS = {
-    "veg": "vegetable",
-    "veggie": "vegetable",
-    "vegan": "vegetable",
-    "chkn": "chicken",
-    "fried": "fried",
-    "grilled": "grill",
-}
+def tokenize(text):
+    return re.findall(r"[a-z]+", text.lower())
 
-CATEGORY_WORDS = {
-    "momo", "burger", "salad", "pasta", "noodle", "soup"
-}
+def find_matches(query, menu_items, top_n=3):
+    """
+    Score every menu item against the user query using:
+      1. Keyword overlap        (high weight)
+      2. Direct name substring  (high weight)
+      3. Fuzzy name similarity  (medium weight)
+      4. Category match         (low weight)
+      5. Ingredient match       (low weight)
+    Returns top_n matches above the confidence threshold.
+    """
+    query_tokens = tokenize(query)
+    query_lower  = query.lower()
+    scored = []
 
-def normalize(text):
-    text = text.lower()
-    text = re.sub(r"[^a-z0-9\s]", "", text)
-    words = text.split()
+    for item in menu_items:
+        score = 0.0
 
-    normalized = []
-    for w in words:
-        if w in STOP_WORDS:
-            continue
-        w = SYNONYMS.get(w, w)
-        if w.endswith("s"):
-            w = w[:-1]  # singularize
-        normalized.append(w)
-
-    return normalized
-
-
-# =========================
-# CORE SEARCH ENGINE
-# =========================
-
-def search_menu(query):
-    query_words = set(normalize(query))
-    results = []
-
-    # Detect category intent (burger vs momo etc.)
-    query_categories = query_words & CATEGORY_WORDS
-
-    for item in menu:
-        name_words = set(normalize(item["name"]))
-
-        keyword_words = set()
+        # 1. Keyword overlap
         for kw in item.get("keywords", []):
-            keyword_words.update(normalize(kw))
+            for kt in tokenize(kw):
+                if any(similarity(kt, qt) > 0.82 for qt in query_tokens):
+                    score += 18
 
-        item_words = name_words | keyword_words
+        # 2. Direct name substring match
+        name_lower = item["name"].lower()
+        if name_lower in query_lower:
+            score += 55
+        else:
+            name_tokens = tokenize(item["name"])
+            matched = sum(
+                1 for nt in name_tokens
+                if any(similarity(nt, qt) > 0.82 for qt in query_tokens)
+            )
+            score += (matched / max(len(name_tokens), 1)) * 45
 
-        # 🚨 HARD CATEGORY FILTER
-        if query_categories:
-            if not (query_categories & name_words):
-                continue  # reject completely
+        # 3. Fuzzy full-name similarity
+        score += similarity(query, item["name"]) * 28
 
-        # 🚨 INTENT COVERAGE RULE
-        matched = query_words & item_words
-        coverage = len(matched) / len(query_words)
+        # 4. Category match
+        if any(similarity(item.get("category", "").lower(), qt) > 0.82 for qt in query_tokens):
+            score += 14
 
-        # Must satisfy at least 70% of intent
-        if coverage < 0.7:
+        # 5. Ingredient match
+        for ing in item.get("ingredients", []):
+            if any(similarity(ing.lower(), qt) > 0.85 for qt in query_tokens):
+                score += 7
+
+        scored.append((score, item))
+
+    scored.sort(key=lambda x: x[0], reverse=True)
+    return [it for s, it in scored[:top_n] if s >= 18]
+
+def detect_intent(query):
+    tokens      = tokenize(query)
+    query_lower = query.lower()
+
+    halal_kw = {"halal"}
+    veg_kw   = {"vegan", "vegetarian", "veggie"}
+    list_kw  = {"menu", "list", "all", "everything", "options", "show", "see", "what"}
+
+    if any(t in tokens for t in halal_kw):
+        return "halal"
+    if any(t in tokens for t in veg_kw) and any(t in tokens for t in list_kw):
+        return "veg_list"
+    if any(t in tokens for t in list_kw) and len(tokens) <= 5:
+        return "list"
+    return "search"
+
+def format_item_text(item):
+    halal = " ✅ Halal" if item.get("halal") else ""
+    return f"{item['name']} — ${item['price']:.2f}{halal}\n{item['description']}"
+
+def list_menu(filter_fn=None):
+    categories = {}
+    for item in menu:
+        if filter_fn and not filter_fn(item):
             continue
+        cat = item["category"].title()
+        categories.setdefault(cat, []).append(item)
 
-        score = (
-            len(matched) * 10 +
-            len(query_categories & name_words) * 20
-        )
+    if not categories:
+        return "No items found."
 
-        results.append((score, item))
-
-    results.sort(key=lambda x: x[0], reverse=True)
-    return [item for _, item in results[:3]]
-
+    lines = []
+    for cat, items in categories.items():
+        lines.append(f"📂 {cat}")
+        for it in items:
+            halal = " ✅" if it.get("halal") else ""
+            lines.append(f"  • {it['name']}  (${it['price']:.2f}){halal}")
+    return "\n".join(lines)
 
 # =========================
 # ROUTES
@@ -102,24 +121,33 @@ def home():
 @app.route("/ask", methods=["POST"])
 def ask():
     question = request.json.get("question", "").strip()
-
     if not question:
         return jsonify({"answer": "Please ask about a menu item."})
 
-    matches = search_menu(question)
+    intent = detect_intent(question)
 
+    if intent == "halal":
+        answer = "Here are our Halal-certified items:\n\n" + list_menu(filter_fn=lambda x: x.get("halal"))
+        return jsonify({"answer": answer})
+
+    if intent == "veg_list":
+        def is_veg(item):
+            non_veg = {"chicken", "lamb", "bacon", "meat", "fish"}
+            return not any(v in " ".join(item.get("ingredients", [])).lower() for v in non_veg)
+        answer = "Here are our vegetarian-friendly items:\n\n" + list_menu(filter_fn=is_veg)
+        return jsonify({"answer": answer})
+
+    if intent == "list":
+        answer = "Here's our full menu:\n\n" + list_menu()
+        return jsonify({"answer": answer})
+
+    # Default: AI item search
+    matches = find_matches(question, menu)
     if not matches:
-        return jsonify({
-            "answer": "Sorry, I couldn’t find anything matching that."
-        })
+        return jsonify({"answer": "Sorry, I couldn't find anything matching that. Try asking about momos, salads, chaat, wraps, breakfast, and more!"})
 
-    return jsonify({
-        "answer": "\n".join(
-            f"{item['name']} — ${item['price']}"
-            for item in matches
-        )
-    })
-
+    answer = "\n\n".join(format_item_text(item) for item in matches)
+    return jsonify({"answer": answer})
 
 # =========================
 # RUN
