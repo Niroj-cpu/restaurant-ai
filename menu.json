@@ -2,590 +2,2206 @@
   "menu": [
     {
       "name": "Vegan MOMOs (10pcs)",
-      "keywords": ["vegan", "momos", "10pcs"],
+      "keywords": [
+        "vegan momos"
+      ],
       "category": "momos",
       "price": 12.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices"],
-      "description": "Steamed vegan momos with fresh vegetables."
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices"
+      ],
+      "description": "Steamed vegan momos filled with fresh vegetables."
     },
     {
       "name": "Butter-Chicken Momos (10pcs)",
-      "keywords": ["butter chicken", "momos", "10pcs"],
+      "keywords": [
+        "butter-chicken momos",
+        "butter chicken momos",
+        "butter momos"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "chicken", "butter", "spices", "onion"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "butter",
+        "spices",
+        "onion"
+      ],
       "halal": true,
       "description": "Steamed chicken momos cooked in a rich butter sauce."
     },
     {
       "name": "Achar Momos",
-      "keywords": ["achar", "momos"],
+      "keywords": [
+        "achar momos"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "chicken", "pickle spices", "onion"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "pickle spices",
+        "onion"
+      ],
       "halal": true,
-      "description": "Spicy chicken momos with traditional achar flavor."
+      "description": "Spicy chicken momos with traditional achar (pickle) flavor."
     },
     {
       "name": "Vegetable Momos (10pcs)",
-      "keywords": ["vegetable", "momos", "10pcs"],
+      "keywords": [
+        "vegetable momos",
+        "veg momos",
+        "plain veg momos"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices"],
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices"
+      ],
       "description": "Steamed momos filled with fresh seasonal vegetables."
     },
     {
       "name": "Chicken Momos (10pcs)",
-      "keywords": ["chicken", "momos", "10pcs"],
+      "keywords": [
+        "chicken momos",
+        "plain chicken momos",
+        "regular chicken momos",
+        "steamed chicken momos"
+      ],
       "category": "momos",
       "price": 14.99,
-      "ingredients": ["flour", "chicken", "onion", "cabbage", "spices"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "onion",
+        "cabbage",
+        "spices"
+      ],
       "halal": true,
       "description": "Classic steamed chicken momos made with halal chicken."
     },
     {
       "name": "Vegetable Jhol Momos (10pcs)",
-      "keywords": ["vegetable", "jhol", "momos", "10pcs"],
+      "keywords": [
+        "vegetable jhol momos",
+        "veg jhol momos",
+        "jhol momos veg"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices", "soup base"],
-      "description": "Steamed vegetable momos served in flavorful jhol sauce."
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices",
+        "soup base"
+      ],
+      "description": "Steamed vegetable momos served in a flavorful jhol sauce."
     },
     {
       "name": "Chicken Jhol Momos (10pcs)",
-      "keywords": ["chicken", "jhol", "momos", "10pcs"],
+      "keywords": [
+        "chicken jhol momos",
+        "jhol momos"
+      ],
       "category": "momos",
       "price": 14.99,
-      "ingredients": ["flour", "chicken", "onion", "cabbage", "spices", "soup base"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "onion",
+        "cabbage",
+        "spices",
+        "soup base"
+      ],
       "halal": true,
       "description": "Steamed chicken momos served in a spicy jhol sauce."
     },
     {
       "name": "Vegetable Tandoori Momos (10pcs)",
-      "keywords": ["vegetable", "tandoori", "momos", "10pcs"],
+      "keywords": [
+        "vegetable tandoori momos",
+        "veg tandoori momos",
+        "tandoori momos veg"
+      ],
       "category": "momos",
       "price": 12.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices", "yogurt marinade"],
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices",
+        "yogurt marinade"
+      ],
       "description": "Tandoori-style grilled vegetable momos."
     },
     {
       "name": "Chicken Tandoori Momos (10pcs)",
-      "keywords": ["chicken", "tandoori", "momos", "10pcs"],
+      "keywords": [
+        "chicken tandoori momos",
+        "tandoori momos chicken"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "chicken", "spices", "yogurt marinade", "onion"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "spices",
+        "yogurt marinade",
+        "onion"
+      ],
       "halal": true,
       "description": "Tandoori-style grilled chicken momos with halal chicken."
     },
     {
       "name": "Vegetable Fried Momos (10pcs)",
-      "keywords": ["vegetable", "fried", "momos", "10pcs"],
+      "keywords": [
+        "vegetable fried momos",
+        "veg fried momos",
+        "fried momos veg"
+      ],
       "category": "momos",
       "price": 12.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices", "oil"],
-      "description": "Crispy fried vegetable momos with fresh veggies."
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices",
+        "oil"
+      ],
+      "description": "Crispy fried vegetable momos."
     },
     {
       "name": "Chicken Fried Momos (10pcs)",
-      "keywords": ["chicken", "fried", "momos", "10pcs"],
+      "keywords": [
+        "chicken fried momos",
+        "fried momos chicken"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "chicken", "onion", "cabbage", "spices", "oil"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "onion",
+        "cabbage",
+        "spices",
+        "oil"
+      ],
       "halal": true,
       "description": "Crispy fried chicken momos made with halal chicken."
     },
     {
       "name": "Vegetable Chilli Momos (10pcs)",
-      "keywords": ["vegetable", "chilli", "momos", "10pcs"],
+      "keywords": [
+        "vegetable chilli momos",
+        "veg chilli momos",
+        "chilli momos veg"
+      ],
       "category": "momos",
       "price": 13.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "chilli sauce", "spices"],
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "chilli sauce",
+        "spices"
+      ],
       "description": "Spicy vegetable momos tossed in chili sauce."
     },
     {
       "name": "Chicken Chilli Momos (10pcs)",
-      "keywords": ["chicken", "chilli", "momos", "10pcs"],
+      "keywords": [
+        "chicken chilli momos",
+        "chilli momos chicken"
+      ],
       "category": "momos",
       "price": 14.99,
-      "ingredients": ["flour", "chicken", "onion", "cabbage", "chilli sauce", "spices"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "onion",
+        "cabbage",
+        "chilli sauce",
+        "spices"
+      ],
       "halal": true,
-      "description": "Spicy chicken momos tossed in chili sauce with halal chicken."
+      "description": "Spicy chicken momos tossed in chili sauce."
     },
     {
       "name": "Vegetable Steam Momos (10pcs)",
-      "keywords": ["vegetable", "steam", "momos", "10pcs"],
+      "keywords": [
+        "vegetable steam momos",
+        "veg steam momos",
+        "steam momos veg"
+      ],
       "category": "momos",
       "price": 11.99,
-      "ingredients": ["flour", "cabbage", "carrot", "onion", "spices"],
-      "description": "Steamed vegetable momos with a soft, tender filling."
+      "ingredients": [
+        "flour",
+        "cabbage",
+        "carrot",
+        "onion",
+        "spices"
+      ],
+      "description": "Classic steamed vegetable momos with a soft, tender filling."
     },
     {
       "name": "Chicken Steam Momos (10pcs)",
-      "keywords": ["chicken", "steam", "momos", "10pcs"],
+      "keywords": [
+        "chicken steam momos",
+        "steam momos chicken"
+      ],
       "category": "momos",
       "price": 12.99,
-      "ingredients": ["flour", "chicken", "onion", "cabbage", "spices"],
+      "ingredients": [
+        "flour",
+        "chicken",
+        "onion",
+        "cabbage",
+        "spices"
+      ],
       "halal": true,
-      "description": "Steamed chicken momos made with halal chicken."
+      "description": "Classic steamed chicken momos made with halal chicken."
     },
     {
       "name": "Cesar Salad",
-      "keywords": ["cesar", "salad"],
+      "keywords": [
+        "cesar",
+        "caesar",
+        "salad"
+      ],
       "category": "salads",
       "price": 7.99,
-      "ingredients": ["lettuce", "parmesan", "croutons", "caesar dressing"],
+      "ingredients": [
+        "lettuce",
+        "parmesan",
+        "croutons",
+        "caesar dressing"
+      ],
       "description": "Classic Caesar salad with parmesan and croutons."
     },
     {
       "name": "Greek Salad",
-      "keywords": ["greek", "salad"],
+      "keywords": [
+        "greek",
+        "salad"
+      ],
       "category": "salads",
       "price": 7.99,
-      "ingredients": ["lettuce", "tomato", "cucumber", "feta", "olives", "olive oil"],
+      "ingredients": [
+        "lettuce",
+        "tomato",
+        "cucumber",
+        "feta",
+        "olives",
+        "olive oil"
+      ],
       "description": "Fresh Greek salad with feta cheese and olives."
     },
     {
       "name": "Garden Salad",
-      "keywords": ["garden", "salad"],
+      "keywords": [
+        "garden",
+        "salad"
+      ],
       "category": "salads",
       "price": 7.99,
-      "ingredients": ["lettuce", "tomato", "cucumber", "carrot", "vinaigrette dressing"],
+      "ingredients": [
+        "lettuce",
+        "tomato",
+        "cucumber",
+        "carrot",
+        "vinaigrette"
+      ],
       "description": "Crisp garden salad with seasonal vegetables."
     },
     {
       "name": "Extra Protein",
-      "keywords": ["extra protein", "protein"],
+      "keywords": [
+        "extra protein",
+        "protein",
+        "add protein"
+      ],
       "category": "salads",
       "price": 4.99,
-      "ingredients": ["chicken", "chickpeas", "tofu"],
+      "ingredients": [
+        "chicken",
+        "chickpeas",
+        "tofu"
+      ],
       "halal": true,
-      "description": "Add extra protein to your salad with chicken or plant-based options."
+      "description": "Add extra protein to your salad \u2014 chicken or plant-based options."
     },
     {
       "name": "Beans",
-      "keywords": ["beans"],
+      "keywords": [
+        "beans"
+      ],
       "category": "salads",
       "price": 4.99,
-      "ingredients": ["kidney beans", "seasoning"],
+      "ingredients": [
+        "kidney beans",
+        "seasoning"
+      ],
       "description": "Cooked beans for added protein and flavor."
     },
     {
       "name": "Pasta",
-      "keywords": ["pasta"],
+      "keywords": [
+        "pasta"
+      ],
       "category": "salads",
       "price": 4.99,
-      "ingredients": ["pasta", "olive oil", "vegetables", "seasoning"],
+      "ingredients": [
+        "pasta",
+        "olive oil",
+        "vegetables",
+        "seasoning"
+      ],
       "description": "Simple pasta with light seasoning and vegetables."
     },
     {
       "name": "Rajama + Rice + Salad",
-      "keywords": ["rajama", "rice", "salad"],
+      "keywords": [
+        "rajama",
+        "rajma",
+        "rice",
+        "salad"
+      ],
       "category": "indian fast food",
       "price": 9.99,
-      "ingredients": ["rajma (kidney beans)", "rice", "salad", "spices"],
+      "ingredients": [
+        "kidney beans",
+        "rice",
+        "salad",
+        "spices"
+      ],
       "description": "Traditional Indian rajma with rice and fresh salad."
     },
     {
       "name": "Chole Bhature Combo",
-      "keywords": ["chole", "bhature", "combo"],
+      "keywords": [
+        "chole",
+        "bhature",
+        "combo"
+      ],
       "category": "indian fast food",
       "price": 11.99,
-      "ingredients": ["chickpeas", "spices", "bhature (fried bread)"],
+      "ingredients": [
+        "chickpeas",
+        "spices",
+        "bhature"
+      ],
       "description": "Spicy chole served with fluffy bhature."
     },
     {
       "name": "Chole Bhature + Salad",
-      "keywords": ["chole", "bhature", "salad"],
+      "keywords": [
+        "chole",
+        "bhature",
+        "salad"
+      ],
       "category": "indian fast food",
       "price": 9.99,
-      "ingredients": ["chickpeas", "spices", "bhature", "salad"],
-      "description": "Chole Bhature served with a side of fresh salad."
+      "ingredients": [
+        "chickpeas",
+        "spices",
+        "bhature",
+        "salad"
+      ],
+      "description": "Chole Bhature served with a fresh side salad."
     },
     {
       "name": "Pav Bhaji Combo",
-      "keywords": ["pav", "bhaji", "combo"],
+      "keywords": [
+        "pav bhaji",
+        "pav",
+        "bhaji",
+        "combo"
+      ],
       "category": "indian fast food",
       "price": 10.99,
-      "ingredients": ["mixed vegetables", "spices", "pav bread", "butter"],
-      "description": "Classic Pav Bhaji with buttered bread."
+      "ingredients": [
+        "mixed vegetables",
+        "spices",
+        "pav bread",
+        "butter"
+      ],
+      "description": "Classic Pav Bhaji with buttered pav bread."
+    },
+    {
+      "name": "Pav Bhaji",
+      "keywords": [
+        "pav bhaji",
+        "pav",
+        "bhaji"
+      ],
+      "category": "indian fast food",
+      "price": 8.99,
+      "ingredients": [
+        "mixed vegetables",
+        "spices",
+        "pav bread",
+        "butter"
+      ],
+      "description": "Mumbai street-style Pav Bhaji with spiced vegetable mash."
     },
     {
       "name": "Veg Pulav",
-      "keywords": ["veg", "pulav"],
+      "keywords": [
+        "veg pulav",
+        "pulav",
+        "pulao"
+      ],
       "category": "indian fast food",
       "price": 7.99,
-      "ingredients": ["rice", "mixed vegetables", "spices"],
+      "ingredients": [
+        "rice",
+        "mixed vegetables",
+        "spices"
+      ],
       "description": "Aromatic vegetable pulav with light spices."
     },
     {
+      "name": "Aloo Paratha (2pc)",
+      "keywords": [
+        "paratha indian fast food",
+        "aloo paratha indian fast food"
+      ],
+      "category": "indian fast food",
+      "price": 6.49,
+      "ingredients": [
+        "wheat flour",
+        "potato",
+        "spices",
+        "butter"
+      ],
+      "description": "Stuffed flatbread with spiced mashed potato filling, served with butter."
+    },
+    {
+      "name": "Paneer Sabji + Naan",
+      "keywords": [
+        "paneer sabji",
+        "paneer",
+        "naan"
+      ],
+      "category": "indian fast food",
+      "price": 9.99,
+      "ingredients": [
+        "paneer",
+        "vegetables",
+        "spices",
+        "naan"
+      ],
+      "description": "Paneer vegetable curry served with soft naan bread."
+    },
+    {
+      "name": "Paneer Sabji + Rice",
+      "keywords": [
+        "paneer sabji",
+        "paneer",
+        "rice"
+      ],
+      "category": "indian fast food",
+      "price": 9.99,
+      "ingredients": [
+        "paneer",
+        "vegetables",
+        "spices",
+        "rice"
+      ],
+      "description": "Paneer vegetable curry served with steamed rice."
+    },
+    {
       "name": "Gulab Jamun (4pc)",
-      "keywords": ["gulab jamun", "4pc"],
-      "category": "desserts",
+      "keywords": [
+        "gulab jamun",
+        "gulab",
+        "jamun",
+        "dessert"
+      ],
+      "category": "indian fast food",
       "price": 4.99,
-      "ingredients": ["milk solids", "flour", "sugar syrup", "cardamom"],
+      "ingredients": [
+        "milk solids",
+        "flour",
+        "sugar syrup",
+        "cardamom"
+      ],
       "description": "Soft and sweet Indian dessert soaked in sugar syrup."
     },
     {
       "name": "Masala Fries",
-      "keywords": ["masala", "fries"],
-      "category": "sides",
+      "keywords": [
+        "masala fries",
+        "masala"
+      ],
+      "category": "indian fast food",
       "price": 6.99,
-      "ingredients": ["potatoes", "spices", "oil", "salt"],
+      "ingredients": [
+        "potatoes",
+        "spices",
+        "oil",
+        "salt"
+      ],
       "description": "Crispy fries tossed in special masala seasoning."
     },
     {
       "name": "Samosa Poutine + Fries",
-      "keywords": ["samosa", "poutine", "fries"],
-      "category": "sides",
+      "keywords": [
+        "samosa poutine",
+        "poutine",
+        "samosa"
+      ],
+      "category": "indian fast food",
       "price": 8.99,
-      "ingredients": ["potatoes", "cheese", "gravy", "samosa pieces", "spices"],
-      "description": "Canadian-Indian fusion of poutine with samosa chunks."
+      "ingredients": [
+        "potatoes",
+        "cheese curds",
+        "gravy",
+        "samosa",
+        "spices"
+      ],
+      "description": "Canadian-Indian fusion poutine topped with samosa chunks."
     },
     {
       "name": "Bombay Style Sandwich",
-      "keywords": ["bombay", "sandwich"],
-      "category": "sandwiches",
+      "keywords": [
+        "bombay sandwich",
+        "bombay",
+        "sandwich"
+      ],
+      "category": "indian fast food",
       "price": 6.99,
-      "ingredients": ["bread", "potato", "chutney", "vegetables", "spices"],
+      "ingredients": [
+        "bread",
+        "potato",
+        "chutney",
+        "vegetables",
+        "spices"
+      ],
       "description": "Layered sandwich with spiced potato and chutney."
     },
     {
       "name": "Veg Masala Burger",
-      "keywords": ["veg", "masala", "burger"],
-      "category": "burgers",
+      "keywords": [
+        "veg masala burger",
+        "veg burger",
+        "masala burger"
+      ],
+      "category": "indian fast food",
       "price": 7.95,
-      "ingredients": ["vegetable patty", "bun", "lettuce", "tomato", "masala sauce"],
+      "ingredients": [
+        "vegetable patty",
+        "bun",
+        "lettuce",
+        "tomato",
+        "masala sauce"
+      ],
       "description": "Spicy vegetarian burger with a flavorful masala sauce."
     },
     {
       "name": "Aloo Tiki Chana Chaat",
-      "keywords": ["aloo", "tiki", "chana", "chaat"],
-      "category": "chaat",
+      "keywords": [
+        "aloo tiki",
+        "chana chaat",
+        "aloo",
+        "tiki",
+        "chaat"
+      ],
+      "category": "indian fast food",
       "price": 7.49,
-      "ingredients": ["potato tikki", "chickpeas", "chutney", "spices", "onion", "tomato"],
-      "description": "Tasty North Indian street snack with spiced potato patties and chickpeas."
+      "ingredients": [
+        "potato tikki",
+        "chickpeas",
+        "chutney",
+        "spices",
+        "onion",
+        "tomato"
+      ],
+      "description": "North Indian street snack with spiced potato patties and chickpeas."
     },
     {
       "name": "Samosa Chana Chaat",
-      "keywords": ["samosa", "chana", "chaat"],
-      "category": "chaat",
+      "keywords": [
+        "samosa chana",
+        "samosa chaat",
+        "chana chaat",
+        "chaat"
+      ],
+      "category": "indian fast food",
       "price": 7.49,
-      "ingredients": ["samosa", "chickpeas", "chutney", "spices", "onion", "tomato"],
-      "description": "Crunchy samosas combined with chickpeas and tangy chutneys."
+      "ingredients": [
+        "samosa",
+        "chickpeas",
+        "chutney",
+        "spices",
+        "onion",
+        "tomato"
+      ],
+      "description": "Crunchy samosas with chickpeas and tangy chutneys."
     },
     {
       "name": "Bombay Bhel",
-      "keywords": ["bombay", "bhel"],
-      "category": "chaat",
+      "keywords": [
+        "bombay bhel",
+        "bhel",
+        "bhel puri"
+      ],
+      "category": "indian fast food",
       "price": 6.99,
-      "ingredients": ["puffed rice", "sev", "onion", "tomato", "chutneys", "spices"],
-      "description": "Classic Mumbai street snack with crunchy puffed rice and tangy chutneys."
+      "ingredients": [
+        "puffed rice",
+        "sev",
+        "onion",
+        "tomato",
+        "chutneys",
+        "spices"
+      ],
+      "description": "Classic Mumbai street snack with puffed rice and tangy chutneys."
     },
     {
       "name": "Chaat/Seva Puri (8pc)",
-      "keywords": ["chaat", "seva puri", "8pc"],
-      "category": "chaat",
+      "keywords": [
+        "seva puri",
+        "chaat",
+        "puri"
+      ],
+      "category": "indian fast food",
       "price": 5.99,
-      "ingredients": ["crispy puris", "potatoes", "chutneys", "sev", "spices"],
-      "description": "Popular chaat with small puris topped with potatoes and chutneys."
+      "ingredients": [
+        "crispy puris",
+        "potatoes",
+        "chutneys",
+        "sev",
+        "spices"
+      ],
+      "description": "Small crispy puris topped with potatoes and chutneys."
     },
     {
       "name": "Samosa Pav (2pc)",
-      "keywords": ["samosa", "pav", "2pc"],
-      "category": "chaat",
+      "keywords": [
+        "samosa pav",
+        "samosa",
+        "pav"
+      ],
+      "category": "indian fast food",
       "price": 5.49,
-      "ingredients": ["samosa", "pav bread", "chutney", "spices"],
+      "ingredients": [
+        "samosa",
+        "pav bread",
+        "chutney",
+        "spices"
+      ],
       "description": "Two samosas served with soft pav and chutney."
     },
     {
       "name": "Dabeli (2pc)",
-      "keywords": ["dabeli", "2pc"],
-      "category": "chaat",
+      "keywords": [
+        "dabeli"
+      ],
+      "category": "indian fast food",
       "price": 5.49,
-      "ingredients": ["spiced potato filling", "pav bread", "chutney", "peanuts", "sev"],
+      "ingredients": [
+        "spiced potato",
+        "pav bread",
+        "chutney",
+        "peanuts",
+        "sev"
+      ],
       "description": "Sweet and spicy Gujarati street food served in pav."
     },
     {
       "name": "Vada Pav (2pc)",
-      "keywords": ["vada", "pav", "2pc"],
-      "category": "chaat",
+      "keywords": [
+        "vada pav",
+        "vada",
+        "pav"
+      ],
+      "category": "indian fast food",
       "price": 5.49,
-      "ingredients": ["potato vada", "pav bread", "chutney", "spices"],
-      "description": "Mumbai’s famous potato fritter sandwich with chutney."
+      "ingredients": [
+        "potato vada",
+        "pav bread",
+        "chutney",
+        "spices"
+      ],
+      "description": "Mumbai's famous potato fritter sandwich with chutney."
     },
     {
       "name": "Large Samosa (5pc)",
-      "keywords": ["samosa", "5pc"],
-      "category": "chaat",
+      "keywords": [
+        "large samosa",
+        "samosa"
+      ],
+      "category": "indian fast food",
       "price": 4.99,
-      "ingredients": ["flour", "potato", "peas", "spices", "oil"],
-      "description": "Five large, crispy samosas stuffed with spiced potato filling."
+      "ingredients": [
+        "flour",
+        "potato",
+        "peas",
+        "spices",
+        "oil"
+      ],
+      "description": "Five large crispy samosas stuffed with spiced potato filling."
     },
     {
       "name": "Falafel Wrap",
-      "keywords": ["falafel", "wrap"],
+      "keywords": [
+        "falafel wrap",
+        "falafel"
+      ],
       "category": "burritos/wraps",
       "price": 8.99,
-      "ingredients": ["falafel", "tortilla", "lettuce", "tomato", "tahini sauce"],
+      "ingredients": [
+        "falafel",
+        "tortilla",
+        "lettuce",
+        "tomato",
+        "tahini sauce"
+      ],
       "description": "Middle Eastern wrap with crispy falafel and fresh veggies."
     },
     {
       "name": "Beans Burrito",
-      "keywords": ["beans", "burrito"],
+      "keywords": [
+        "beans burrito",
+        "burrito",
+        "beans"
+      ],
       "category": "burritos/wraps",
       "price": 8.99,
-      "ingredients": ["beans", "tortilla", "rice", "cheese", "salsa"],
+      "ingredients": [
+        "beans",
+        "tortilla",
+        "rice",
+        "cheese",
+        "salsa"
+      ],
       "description": "Hearty burrito filled with beans, rice, and melted cheese."
     },
     {
       "name": "Butter Chicken Wrap",
-      "keywords": ["butter chicken", "wrap"],
+      "keywords": [
+        "butter chicken wrap"
+      ],
       "category": "burritos/wraps",
       "price": 8.99,
-      "ingredients": ["halal chicken", "tortilla", "butter chicken sauce", "lettuce"],
+      "ingredients": [
+        "halal chicken",
+        "tortilla",
+        "butter chicken sauce",
+        "lettuce"
+      ],
       "halal": true,
-      "description": "Wrap filled with flavorful halal butter chicken and fresh veggies."
+      "description": "Wrap filled with flavorful halal butter chicken."
     },
     {
       "name": "Chicken Shawarma",
-      "keywords": ["chicken", "shawarma"],
+      "keywords": [
+        "chicken shawarma",
+        "shawarma"
+      ],
       "category": "burritos/wraps",
       "price": 8.99,
-      "ingredients": ["halal chicken", "tortilla", "lettuce", "tomato", "yogurt sauce"],
+      "ingredients": [
+        "halal chicken",
+        "tortilla",
+        "lettuce",
+        "tomato",
+        "yogurt sauce"
+      ],
       "halal": true,
       "description": "Middle Eastern style shawarma wrap with halal chicken."
     },
     {
       "name": "Chicken Caesar Wrap",
-      "keywords": ["chicken", "caesar", "wrap"],
+      "keywords": [
+        "chicken caesar wrap",
+        "caesar wrap",
+        "chicken wrap"
+      ],
       "category": "burritos/wraps",
       "price": 8.99,
-      "ingredients": ["halal chicken", "tortilla", "lettuce", "parmesan", "caesar dressing"],
+      "ingredients": [
+        "halal chicken",
+        "tortilla",
+        "lettuce",
+        "parmesan",
+        "caesar dressing"
+      ],
       "halal": true,
       "description": "Caesar wrap with grilled halal chicken and parmesan."
     },
     {
-      "name": "Veg Combo",
-      "keywords": ["veg", "combo", "lunch", "dinner"],
-      "category": "lunch/dinner combo",
+      "name": "Chicken Wings + Fries",
+      "keywords": [
+        "chicken wings",
+        "wings",
+        "wings and fries"
+      ],
+      "category": "sides",
       "price": 10.99,
-      "ingredients": ["vegetable curry", "rice", "salad", "roti"],
-      "description": "Complete vegetarian combo meal with curry, rice, roti, and salad."
+      "ingredients": [
+        "chicken wings",
+        "fries",
+        "sauce"
+      ],
+      "halal": true,
+      "description": "Crispy chicken wings served with a side of fries."
     },
     {
-      "name": "Non-veg Combo",
-      "keywords": ["non-veg", "combo", "lunch", "dinner"],
+      "name": "Chicken Nuggets + Fries",
+      "keywords": [
+        "chicken nuggets",
+        "nuggets",
+        "nuggets and fries"
+      ],
+      "category": "sides",
+      "price": 7.99,
+      "ingredients": [
+        "chicken nuggets",
+        "fries"
+      ],
+      "halal": true,
+      "description": "Crispy chicken nuggets served with fries."
+    },
+    {
+      "name": "Falafel Fries",
+      "keywords": [
+        "falafel fries",
+        "falafel"
+      ],
+      "category": "sides",
+      "price": 7.99,
+      "ingredients": [
+        "falafel",
+        "fries",
+        "sauce"
+      ],
+      "description": "Falafel served alongside crispy fries."
+    },
+    {
+      "name": "Poutine",
+      "keywords": [
+        "poutine"
+      ],
+      "category": "sides",
+      "price": 7.99,
+      "ingredients": [
+        "fries",
+        "cheese curds",
+        "gravy"
+      ],
+      "description": "Classic Canadian poutine with fries, cheese curds, and gravy."
+    },
+    {
+      "name": "Onion Rings (Medium)",
+      "keywords": [
+        "onion rings",
+        "onion rings medium"
+      ],
+      "category": "sides",
+      "price": 4.99,
+      "ingredients": [
+        "onion",
+        "batter",
+        "oil"
+      ],
+      "description": "Crispy battered onion rings \u2014 medium size."
+    },
+    {
+      "name": "Onion Rings (Large)",
+      "keywords": [
+        "onion rings large",
+        "large onion rings"
+      ],
+      "category": "sides",
+      "price": 7.99,
+      "ingredients": [
+        "onion",
+        "batter",
+        "oil"
+      ],
+      "description": "Crispy battered onion rings \u2014 large size."
+    },
+    {
+      "name": "Fries (Medium)",
+      "keywords": [
+        "fries",
+        "fries medium",
+        "medium fries"
+      ],
+      "category": "sides",
+      "price": 4.99,
+      "ingredients": [
+        "potatoes",
+        "oil",
+        "salt"
+      ],
+      "description": "Classic crispy fries \u2014 medium size."
+    },
+    {
+      "name": "Fries (Large)",
+      "keywords": [
+        "fries large",
+        "large fries"
+      ],
+      "category": "sides",
+      "price": 7.99,
+      "ingredients": [
+        "potatoes",
+        "oil",
+        "salt"
+      ],
+      "description": "Classic crispy fries \u2014 large size."
+    },
+    {
+      "name": "Veg Combo",
+      "keywords": [
+        "veg combo",
+        "vegetarian combo",
+        "veggie combo",
+        "veg lunch",
+        "veg dinner",
+        "vegetarian lunch",
+        "vegetarian dinner"
+      ],
+      "category": "lunch/dinner combo",
+      "price": 10.99,
+      "ingredients": [
+        "rice",
+        "two veg curries",
+        "salad"
+      ],
+      "description": "Rice, two vegetable curries, and salad."
+    },
+    {
+      "name": "Non-Veg Combo",
+      "keywords": [
+        "non-veg combo",
+        "nonveg combo",
+        "meat combo",
+        "chicken lunch combo",
+        "chicken dinner combo",
+        "non vegetarian combo"
+      ],
       "category": "lunch/dinner combo",
       "price": 12.99,
-      "ingredients": ["halal chicken curry", "rice", "salad", "roti"],
+      "ingredients": [
+        "rice",
+        "veg curry",
+        "halal chicken curry",
+        "salad"
+      ],
       "halal": true,
-      "description": "Non-vegetarian combo meal with halal chicken curry, rice, roti, and salad."
+      "description": "Rice, vegetable curry, halal chicken curry, and salad."
     },
     {
       "name": "Palak Paneer",
-      "keywords": ["palak", "paneer", "vegetable"],
+      "keywords": [
+        "palak paneer",
+        "palak",
+        "paneer",
+        "spinach paneer"
+      ],
       "category": "vegetable options",
       "price": 11.99,
-      "ingredients": ["spinach", "paneer", "cream", "spices"],
+      "ingredients": [
+        "spinach",
+        "paneer",
+        "cream",
+        "spices"
+      ],
       "description": "Creamy spinach curry with soft paneer cubes."
     },
     {
       "name": "Dal Makhani",
-      "keywords": ["dal", "makhani", "vegetable"],
+      "keywords": [
+        "dal makhani",
+        "dal",
+        "makhani",
+        "lentil"
+      ],
       "category": "vegetable options",
       "price": 11.99,
-      "ingredients": ["black lentils", "kidney beans", "cream", "spices"],
+      "ingredients": [
+        "black lentils",
+        "kidney beans",
+        "cream",
+        "spices"
+      ],
       "description": "Rich and buttery lentil dish cooked with Indian spices."
     },
     {
       "name": "Matar Paneer",
-      "keywords": ["matar", "paneer", "vegetable"],
+      "keywords": [
+        "matar paneer",
+        "matar",
+        "paneer",
+        "peas paneer"
+      ],
       "category": "vegetable options",
       "price": 11.99,
-      "ingredients": ["paneer", "green peas", "tomato", "spices"],
-      "description": "Paneer and peas cooked in a spiced tomato gravy."
+      "ingredients": [
+        "paneer",
+        "green peas",
+        "tomato",
+        "spices"
+      ],
+      "description": "Paneer and peas in a spiced tomato gravy."
     },
     {
       "name": "Chana Masala",
-      "keywords": ["chana", "masala", "vegetable"],
+      "keywords": [
+        "chana masala",
+        "chana",
+        "chickpea curry"
+      ],
       "category": "vegetable options",
       "price": 11.99,
-      "ingredients": ["chickpeas", "tomato", "onion", "spices"],
+      "ingredients": [
+        "chickpeas",
+        "tomato",
+        "onion",
+        "spices"
+      ],
       "description": "Spiced chickpea curry, a North Indian favorite."
     },
     {
       "name": "Aaloo Gobi",
-      "keywords": ["aaloo", "gobi", "vegetable"],
+      "keywords": [
+        "aaloo gobi",
+        "aloo gobi",
+        "potato cauliflower"
+      ],
       "category": "vegetable options",
       "price": 11.99,
-      "ingredients": ["potatoes", "cauliflower", "tomato", "spices"],
+      "ingredients": [
+        "potatoes",
+        "cauliflower",
+        "tomato",
+        "spices"
+      ],
       "description": "Classic Indian potato and cauliflower curry."
     },
     {
       "name": "Chicken Saag",
-      "keywords": ["chicken", "saag", "non-veg"],
+      "keywords": [
+        "chicken saag",
+        "saag chicken",
+        "spinach chicken"
+      ],
       "category": "non-veg options",
       "price": 13.99,
-      "ingredients": ["halal chicken", "spinach", "cream", "spices"],
+      "ingredients": [
+        "halal chicken",
+        "spinach",
+        "cream",
+        "spices"
+      ],
       "halal": true,
       "description": "Tender halal chicken cooked in creamy spinach sauce."
     },
     {
       "name": "Butter Chicken",
-      "keywords": ["butter", "chicken", "non-veg"],
+      "keywords": [
+        "butter chicken",
+        "butter chicken curry",
+        "butter chicken dish"
+      ],
       "category": "non-veg options",
       "price": 13.99,
-      "ingredients": ["halal chicken", "butter", "tomato", "cream", "spices"],
+      "ingredients": [
+        "halal chicken",
+        "butter",
+        "tomato",
+        "cream",
+        "spices"
+      ],
       "halal": true,
-      "description": "Classic North Indian dish with tender halal chicken in a buttery tomato sauce."
+      "description": "Classic North Indian butter chicken in a rich tomato sauce."
     },
     {
       "name": "Lamb Curry",
-      "keywords": ["lamb", "curry", "non-veg"],
+      "keywords": [
+        "lamb curry",
+        "lamb"
+      ],
       "category": "non-veg options",
       "price": 13.99,
-      "ingredients": ["halal lamb", "tomato", "onion", "spices"],
+      "ingredients": [
+        "halal lamb",
+        "tomato",
+        "onion",
+        "spices"
+      ],
       "halal": true,
-      "description": "Tender halal lamb cooked in a rich, spiced curry."
+      "description": "Tender halal lamb in a rich, spiced curry."
     },
     {
       "name": "Chicken Curry",
-      "keywords": ["chicken", "curry", "non-veg"],
+      "keywords": [
+        "chicken curry"
+      ],
       "category": "non-veg options",
       "price": 13.99,
-      "ingredients": ["halal chicken", "tomato", "onion", "spices"],
+      "ingredients": [
+        "halal chicken",
+        "tomato",
+        "onion",
+        "spices"
+      ],
       "halal": true,
       "description": "Traditional North Indian chicken curry with halal chicken."
     },
     {
       "name": "Bacon, Egg and Cheese",
-      "keywords": ["bacon", "egg", "cheese", "breakfast"],
+      "keywords": [
+        "bacon egg and cheese",
+        "bacon egg cheese",
+        "bec",
+        "bacon breakfast sandwich",
+        "bacon egg"
+      ],
       "category": "breakfast",
       "price": 5.75,
-      "ingredients": ["bacon", "egg", "cheese", "bread"],
+      "ingredients": [
+        "bacon",
+        "egg",
+        "cheese",
+        "bread"
+      ],
       "description": "Classic breakfast sandwich with bacon, egg, and melted cheese."
     },
     {
       "name": "BLT",
-      "keywords": ["blt", "breakfast"],
+      "keywords": [
+        "blt",
+        "bacon lettuce tomato"
+      ],
       "category": "breakfast",
       "price": 5.49,
-      "ingredients": ["bacon", "lettuce", "tomato", "bread", "mayonnaise"],
-      "description": "Bacon, lettuce, and tomato sandwich on toasted bread."
+      "ingredients": [
+        "bacon",
+        "lettuce",
+        "tomato",
+        "bread",
+        "mayonnaise"
+      ],
+      "description": "Bacon, lettuce, and tomato on toasted bread."
     },
     {
       "name": "Egg and Cheese",
-      "keywords": ["egg", "cheese", "breakfast"],
+      "keywords": [
+        "egg cheese sandwich",
+        "egg cheese",
+        "just egg and cheese"
+      ],
       "category": "breakfast",
-      "price": 5.00,
-      "ingredients": ["egg", "cheese", "bread"],
-      "description": "Simple and satisfying breakfast sandwich."
+      "price": 5.0,
+      "ingredients": [
+        "egg",
+        "cheese",
+        "bread"
+      ],
+      "description": "Simple and satisfying egg and cheese breakfast sandwich."
     },
     {
       "name": "Egg Wrap",
-      "keywords": ["egg", "wrap", "breakfast"],
+      "keywords": [
+        "egg wrap"
+      ],
       "category": "breakfast",
       "price": 5.49,
-      "ingredients": ["egg", "tortilla", "cheese", "lettuce"],
+      "ingredients": [
+        "egg",
+        "tortilla",
+        "cheese",
+        "lettuce"
+      ],
       "description": "Soft tortilla wrap filled with scrambled egg and cheese."
     },
     {
       "name": "Grilled Cheese",
-      "keywords": ["grilled", "cheese", "breakfast"],
+      "keywords": [
+        "grilled cheese"
+      ],
       "category": "breakfast",
       "price": 3.79,
-      "ingredients": ["bread", "cheese", "butter"],
+      "ingredients": [
+        "bread",
+        "cheese",
+        "butter"
+      ],
       "description": "Classic grilled cheese sandwich with melted cheese."
     },
     {
       "name": "Veggie Omelet",
-      "keywords": ["veggie", "omelet", "breakfast"],
+      "keywords": [
+        "veggie omelet",
+        "omelet",
+        "omelette"
+      ],
       "category": "breakfast",
-      "price": 5.00,
-      "ingredients": ["egg", "bell peppers", "onions", "tomatoes", "spices"],
-      "description": "Fluffy omelet with fresh vegetables."
+      "price": 5.0,
+      "ingredients": [
+        "egg",
+        "bell peppers",
+        "onions",
+        "tomatoes",
+        "spices"
+      ],
+      "description": "Fluffy omelet loaded with fresh vegetables."
     },
     {
       "name": "Nutella Sandwich",
-      "keywords": ["nutella", "sandwich", "breakfast"],
+      "keywords": [
+        "nutella sandwich",
+        "nutella"
+      ],
       "category": "breakfast",
       "price": 3.75,
-      "ingredients": ["bread", "nutella"],
+      "ingredients": [
+        "bread",
+        "nutella"
+      ],
       "description": "Sweet breakfast sandwich with chocolate-hazelnut spread."
     },
     {
       "name": "Bagel + Cheese",
-      "keywords": ["bagel", "cheese", "breakfast"],
+      "keywords": [
+        "bagel cheese",
+        "bagel"
+      ],
       "category": "breakfast",
       "price": 3.15,
-      "ingredients": ["bagel", "cheese"],
+      "ingredients": [
+        "bagel",
+        "cheese"
+      ],
       "description": "Toasted bagel with melted cheese."
     },
     {
       "name": "Bagel + Butter",
-      "keywords": ["bagel", "butter", "breakfast"],
+      "keywords": [
+        "bagel butter",
+        "bagel"
+      ],
       "category": "breakfast",
       "price": 2.29,
-      "ingredients": ["bagel", "butter"],
-      "description": "Simple bagel served with butter."
+      "ingredients": [
+        "bagel",
+        "butter"
+      ],
+      "description": "Toasted bagel served with butter."
     },
     {
       "name": "Bread with Peanut Butter/Jam",
-      "keywords": ["bread", "peanut butter", "jam", "breakfast"],
+      "keywords": [
+        "peanut butter",
+        "jam",
+        "bread",
+        "peanut butter jam"
+      ],
       "category": "breakfast",
       "price": 2.79,
-      "ingredients": ["bread", "peanut butter", "jam"],
-      "description": "Classic breakfast bread with peanut butter or jam."
+      "ingredients": [
+        "bread",
+        "peanut butter",
+        "jam"
+      ],
+      "description": "Breakfast bread with peanut butter or jam."
     },
     {
-      "name": "Plain Roti",
-      "keywords": ["plain", "roti"],
-      "category": "roti",
-      "price": 2.49,
-      "ingredients": ["wheat flour", "water", "salt"],
-      "description": "Soft and round unleavened flatbread."
+      "name": "Club Sandwich",
+      "keywords": [
+        "club sandwich",
+        "club"
+      ],
+      "category": "sandwiches",
+      "price": 9.99,
+      "ingredients": [
+        "bread",
+        "turkey",
+        "bacon",
+        "lettuce",
+        "tomato",
+        "mayo"
+      ],
+      "description": "Classic multi-layered club sandwich."
     },
     {
-      "name": "Coffee Small",
-      "keywords": ["coffee", "small", "beverage"],
+      "name": "Turkey Sandwich",
+      "keywords": [
+        "turkey sandwich",
+        "turkey"
+      ],
+      "category": "sandwiches",
+      "price": 7.49,
+      "ingredients": [
+        "turkey",
+        "bread",
+        "lettuce",
+        "tomato",
+        "mayo"
+      ],
+      "description": "Freshly made turkey sandwich."
+    },
+    {
+      "name": "Chicken Breast Sandwich",
+      "keywords": [
+        "chicken breast sandwich",
+        "chicken breast",
+        "chicken sandwich"
+      ],
+      "category": "sandwiches",
+      "price": 7.95,
+      "ingredients": [
+        "chicken breast",
+        "bread",
+        "lettuce",
+        "tomato"
+      ],
+      "halal": true,
+      "description": "Grilled chicken breast sandwich with fresh toppings."
+    },
+    {
+      "name": "Tuna Sandwich",
+      "keywords": [
+        "tuna sandwich",
+        "tuna"
+      ],
+      "category": "sandwiches",
+      "price": 7.49,
+      "ingredients": [
+        "tuna",
+        "bread",
+        "mayo",
+        "lettuce",
+        "tomato"
+      ],
+      "description": "Classic tuna sandwich with mayo."
+    },
+    {
+      "name": "Ham & Cheese Sandwich",
+      "keywords": [
+        "ham and cheese",
+        "ham cheese",
+        "ham sandwich"
+      ],
+      "category": "sandwiches",
+      "price": 7.49,
+      "ingredients": [
+        "ham",
+        "cheese",
+        "bread",
+        "lettuce",
+        "tomato"
+      ],
+      "description": "Ham and melted cheese sandwich."
+    },
+    {
+      "name": "Egg Salad Sandwich",
+      "keywords": [
+        "egg salad sandwich",
+        "egg salad"
+      ],
+      "category": "sandwiches",
+      "price": 7.49,
+      "ingredients": [
+        "egg",
+        "mayo",
+        "lettuce",
+        "bread"
+      ],
+      "description": "Creamy egg salad sandwich."
+    },
+    {
+      "name": "Veggie Sandwich",
+      "keywords": [
+        "veggie sandwich",
+        "vegetable sandwich",
+        "veg sandwich"
+      ],
+      "category": "sandwiches",
+      "price": 6.99,
+      "ingredients": [
+        "bread",
+        "lettuce",
+        "tomato",
+        "cucumber",
+        "bell peppers",
+        "mayo"
+      ],
+      "description": "Fresh vegetable sandwich with crisp toppings."
+    },
+    {
+      "name": "Veggie Burger",
+      "keywords": [
+        "veggie burger",
+        "vegetarian burger",
+        "veg burger"
+      ],
+      "category": "burgers",
+      "price": 7.95,
+      "ingredients": [
+        "vegetable patty",
+        "bun",
+        "lettuce",
+        "tomato",
+        "sauce"
+      ],
+      "description": "Tasty vegetarian burger with a veggie patty."
+    },
+    {
+      "name": "Chicken Burger",
+      "keywords": [
+        "chicken burger"
+      ],
+      "category": "burgers",
+      "price": 7.95,
+      "ingredients": [
+        "halal chicken patty",
+        "bun",
+        "lettuce",
+        "tomato",
+        "sauce"
+      ],
+      "halal": true,
+      "description": "Juicy halal chicken burger with fresh toppings."
+    },
+    {
+      "name": "Beef Burger",
+      "keywords": [
+        "beef burger",
+        "beef"
+      ],
+      "category": "burgers",
+      "price": 7.95,
+      "ingredients": [
+        "beef patty",
+        "bun",
+        "lettuce",
+        "tomato",
+        "sauce"
+      ],
+      "description": "Classic beef burger with fresh toppings."
+    },
+    {
+      "name": "Burger Combo (Fries + Pop)",
+      "keywords": [
+        "burger combo",
+        "combo fries pop",
+        "combo"
+      ],
+      "category": "burgers",
+      "price": 4.99,
+      "ingredients": [
+        "fries",
+        "pop"
+      ],
+      "description": "Add fries and a pop to any burger."
+    },
+    {
+      "name": "Egg Fried Rice",
+      "keywords": [
+        "egg fried rice",
+        "fried rice egg"
+      ],
+      "category": "rice",
+      "price": 9.99,
+      "ingredients": [
+        "rice",
+        "egg",
+        "vegetables",
+        "soy sauce",
+        "oil"
+      ],
+      "description": "Classic egg fried rice with vegetables."
+    },
+    {
+      "name": "Chicken Fried Rice",
+      "keywords": [
+        "chicken fried rice",
+        "fried rice chicken"
+      ],
+      "category": "rice",
+      "price": 9.99,
+      "ingredients": [
+        "rice",
+        "halal chicken",
+        "vegetables",
+        "soy sauce",
+        "oil"
+      ],
+      "halal": true,
+      "description": "Fried rice with tender halal chicken and vegetables."
+    },
+    {
+      "name": "Vegetable Fried Rice",
+      "keywords": [
+        "vegetable fried rice",
+        "veg fried rice",
+        "fried rice"
+      ],
+      "category": "rice",
+      "price": 8.99,
+      "ingredients": [
+        "rice",
+        "mixed vegetables",
+        "soy sauce",
+        "oil"
+      ],
+      "description": "Flavourful fried rice with fresh mixed vegetables."
+    },
+    {
+      "name": "Peas Pulao",
+      "keywords": [
+        "peas pulao",
+        "pulao",
+        "matar pulao"
+      ],
+      "category": "rice",
+      "price": 6.99,
+      "ingredients": [
+        "rice",
+        "green peas",
+        "spices"
+      ],
+      "description": "Lightly spiced rice with green peas."
+    },
+    {
+      "name": "Jeera Rice",
+      "keywords": [
+        "jeera rice",
+        "cumin rice",
+        "jeera"
+      ],
+      "category": "rice",
+      "price": 5.45,
+      "ingredients": [
+        "rice",
+        "cumin",
+        "ghee",
+        "spices"
+      ],
+      "description": "Fragrant cumin-tempered basmati rice."
+    },
+    {
+      "name": "Garlic Rice",
+      "keywords": [
+        "garlic rice",
+        "garlic"
+      ],
+      "category": "rice",
+      "price": 4.5,
+      "ingredients": [
+        "rice",
+        "garlic",
+        "butter",
+        "spices"
+      ],
+      "description": "Buttery rice cooked with garlic."
+    },
+    {
+      "name": "Plain Rice",
+      "keywords": [
+        "plain rice",
+        "steamed rice",
+        "rice"
+      ],
+      "category": "rice",
+      "price": 3.99,
+      "ingredients": [
+        "rice",
+        "water",
+        "salt"
+      ],
+      "description": "Simple steamed plain rice."
+    },
+    {
+      "name": "Rice Shawarma",
+      "keywords": [
+        "rice shawarma",
+        "shawarma rice"
+      ],
+      "category": "rice",
+      "price": 10.99,
+      "ingredients": [
+        "rice",
+        "halal chicken shawarma",
+        "sauce",
+        "vegetables"
+      ],
+      "halal": true,
+      "description": "Rice bowl topped with halal chicken shawarma."
+    },
+    {
+      "name": "Rice Butter Chicken",
+      "keywords": [
+        "rice butter chicken",
+        "butter chicken rice bowl"
+      ],
+      "category": "rice",
+      "price": 10.99,
+      "ingredients": [
+        "rice",
+        "halal butter chicken",
+        "cream",
+        "tomato sauce"
+      ],
+      "halal": true,
+      "description": "Rice bowl topped with rich halal butter chicken."
+    },
+    {
+      "name": "Vegetable Biryani",
+      "keywords": [
+        "vegetable biryani",
+        "veg biryani",
+        "biryani"
+      ],
+      "category": "biryani",
+      "price": 11.99,
+      "ingredients": [
+        "basmati rice",
+        "mixed vegetables",
+        "spices",
+        "saffron",
+        "yogurt"
+      ],
+      "description": "Fragrant basmati rice slow-cooked with spiced vegetables."
+    },
+    {
+      "name": "Chicken Biryani",
+      "keywords": [
+        "chicken biryani",
+        "biryani"
+      ],
+      "category": "biryani",
+      "price": 12.99,
+      "ingredients": [
+        "basmati rice",
+        "halal chicken",
+        "spices",
+        "saffron",
+        "yogurt"
+      ],
+      "halal": true,
+      "description": "Aromatic basmati rice slow-cooked with halal chicken and spices."
+    },
+    {
+      "name": "Coffee (Medium)",
+      "keywords": [
+        "coffee",
+        "coffee medium",
+        "medium coffee",
+        "small coffee"
+      ],
       "category": "beverages",
       "price": 1.99,
-      "ingredients": ["coffee", "water", "milk optional", "sugar optional"],
-      "description": "Freshly brewed small coffee."
-    },
-    {
-      "name": "Coffee Medium",
-      "keywords": ["coffee", "medium", "beverage"],
-      "category": "beverages",
-      "price": 1.99,
-      "ingredients": ["coffee", "water", "milk optional", "sugar optional"],
+      "ingredients": [
+        "coffee",
+        "water"
+      ],
       "description": "Freshly brewed medium coffee."
     },
     {
-      "name": "Coffee Large",
-      "keywords": ["coffee", "large", "beverage"],
+      "name": "Coffee (Large)",
+      "keywords": [
+        "large coffee",
+        "coffee large"
+      ],
       "category": "beverages",
       "price": 2.25,
-      "ingredients": ["coffee", "water", "milk optional", "sugar optional"],
+      "ingredients": [
+        "coffee",
+        "water"
+      ],
       "description": "Freshly brewed large coffee."
     },
     {
-      "name": "Hot Chocolate Medium",
-      "keywords": ["hot chocolate", "medium", "beverage"],
+      "name": "Hot Chocolate (Medium)",
+      "keywords": [
+        "hot chocolate",
+        "hot chocolate medium"
+      ],
       "category": "beverages",
       "price": 2.85,
-      "ingredients": ["milk", "chocolate", "sugar"],
-      "description": "Creamy hot chocolate served medium size."
+      "ingredients": [
+        "milk",
+        "chocolate",
+        "sugar"
+      ],
+      "description": "Creamy hot chocolate \u2014 medium size."
     },
     {
-      "name": "Hot Chocolate Large",
-      "keywords": ["hot chocolate", "large", "beverage"],
+      "name": "Hot Chocolate (Large)",
+      "keywords": [
+        "hot chocolate large",
+        "large hot chocolate"
+      ],
       "category": "beverages",
       "price": 3.15,
-      "ingredients": ["milk", "chocolate", "sugar"],
-      "description": "Creamy hot chocolate served large size."
+      "ingredients": [
+        "milk",
+        "chocolate",
+        "sugar"
+      ],
+      "description": "Creamy hot chocolate \u2014 large size."
+    },
+    {
+      "name": "French Vanilla (Medium)",
+      "keywords": [
+        "french vanilla",
+        "french vanilla medium"
+      ],
+      "category": "beverages",
+      "price": 2.85,
+      "ingredients": [
+        "coffee",
+        "vanilla syrup",
+        "milk"
+      ],
+      "description": "Sweet and creamy French Vanilla \u2014 medium size."
+    },
+    {
+      "name": "French Vanilla (Large)",
+      "keywords": [
+        "french vanilla large",
+        "large french vanilla"
+      ],
+      "category": "beverages",
+      "price": 3.15,
+      "ingredients": [
+        "coffee",
+        "vanilla syrup",
+        "milk"
+      ],
+      "description": "Sweet and creamy French Vanilla \u2014 large size."
+    },
+    {
+      "name": "Cappuccino (Medium)",
+      "keywords": [
+        "cappuccino",
+        "cappuccino medium"
+      ],
+      "category": "beverages",
+      "price": 2.99,
+      "ingredients": [
+        "espresso",
+        "steamed milk",
+        "foam"
+      ],
+      "description": "Classic cappuccino with rich espresso and foam \u2014 medium."
+    },
+    {
+      "name": "Cappuccino (Large)",
+      "keywords": [
+        "cappuccino large",
+        "large cappuccino"
+      ],
+      "category": "beverages",
+      "price": 3.25,
+      "ingredients": [
+        "espresso",
+        "steamed milk",
+        "foam"
+      ],
+      "description": "Classic cappuccino with rich espresso and foam \u2014 large."
+    },
+    {
+      "name": "Latte (Medium)",
+      "keywords": [
+        "latte",
+        "latte medium"
+      ],
+      "category": "beverages",
+      "price": 2.99,
+      "ingredients": [
+        "espresso",
+        "steamed milk"
+      ],
+      "description": "Smooth and creamy latte \u2014 medium size."
+    },
+    {
+      "name": "Latte (Large)",
+      "keywords": [
+        "latte large",
+        "large latte"
+      ],
+      "category": "beverages",
+      "price": 3.25,
+      "ingredients": [
+        "espresso",
+        "steamed milk"
+      ],
+      "description": "Smooth and creamy latte \u2014 large size."
+    },
+    {
+      "name": "Herbal Tea (Medium)",
+      "keywords": [
+        "herbal tea",
+        "herbal tea medium",
+        "any herbal tea"
+      ],
+      "category": "beverages",
+      "price": 2.15,
+      "ingredients": [
+        "herbal tea blend",
+        "hot water"
+      ],
+      "description": "Soothing herbal tea \u2014 medium size."
+    },
+    {
+      "name": "Herbal Tea (Large)",
+      "keywords": [
+        "herbal tea large",
+        "large herbal tea"
+      ],
+      "category": "beverages",
+      "price": 2.95,
+      "ingredients": [
+        "herbal tea blend",
+        "hot water"
+      ],
+      "description": "Soothing herbal tea \u2014 large size."
+    },
+    {
+      "name": "Ice Coffee",
+      "keywords": [
+        "ice coffee",
+        "iced coffee",
+        "cold coffee"
+      ],
+      "category": "beverages",
+      "price": 2.99,
+      "ingredients": [
+        "coffee",
+        "ice",
+        "milk"
+      ],
+      "description": "Chilled iced coffee."
+    },
+    {
+      "name": "Indian Coffee (Small)",
+      "keywords": [
+        "indian coffee",
+        "indian coffee small",
+        "small indian coffee"
+      ],
+      "category": "beverages",
+      "price": 2.35,
+      "ingredients": [
+        "strong coffee",
+        "milk",
+        "sugar"
+      ],
+      "description": "Rich South Indian-style coffee \u2014 small."
+    },
+    {
+      "name": "Indian Coffee (Medium)",
+      "keywords": [
+        "indian coffee medium",
+        "medium indian coffee"
+      ],
+      "category": "beverages",
+      "price": 3.41,
+      "ingredients": [
+        "strong coffee",
+        "milk",
+        "sugar"
+      ],
+      "description": "Rich South Indian-style coffee \u2014 medium."
+    },
+    {
+      "name": "Indian Coffee (Large)",
+      "keywords": [
+        "indian coffee large",
+        "large indian coffee"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "strong coffee",
+        "milk",
+        "sugar"
+      ],
+      "description": "Rich South Indian-style coffee \u2014 large."
+    },
+    {
+      "name": "Indian Masala Tea (Small)",
+      "keywords": [
+        "masala tea",
+        "masala chai",
+        "indian masala tea",
+        "chai",
+        "indian tea"
+      ],
+      "category": "beverages",
+      "price": 2.35,
+      "ingredients": [
+        "tea",
+        "milk",
+        "ginger",
+        "cardamom",
+        "spices"
+      ],
+      "description": "Spiced Indian masala tea \u2014 small."
+    },
+    {
+      "name": "Indian Masala Tea (Medium)",
+      "keywords": [
+        "masala tea medium",
+        "masala chai medium",
+        "indian masala tea medium"
+      ],
+      "category": "beverages",
+      "price": 3.41,
+      "ingredients": [
+        "tea",
+        "milk",
+        "ginger",
+        "cardamom",
+        "spices"
+      ],
+      "description": "Spiced Indian masala tea \u2014 medium."
+    },
+    {
+      "name": "Indian Masala Tea (Large)",
+      "keywords": [
+        "masala tea large",
+        "masala chai large",
+        "indian masala tea large"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "tea",
+        "milk",
+        "ginger",
+        "cardamom",
+        "spices"
+      ],
+      "description": "Spiced Indian masala tea \u2014 large."
+    },
+    {
+      "name": "Cardamom Tea (Small)",
+      "keywords": [
+        "cardamom tea",
+        "cardamom chai",
+        "elaichi tea"
+      ],
+      "category": "beverages",
+      "price": 2.35,
+      "ingredients": [
+        "tea",
+        "milk",
+        "cardamom",
+        "sugar"
+      ],
+      "description": "Fragrant cardamom tea \u2014 small."
+    },
+    {
+      "name": "Cardamom Tea (Medium)",
+      "keywords": [
+        "cardamom tea medium",
+        "medium cardamom tea"
+      ],
+      "category": "beverages",
+      "price": 3.41,
+      "ingredients": [
+        "tea",
+        "milk",
+        "cardamom",
+        "sugar"
+      ],
+      "description": "Fragrant cardamom tea \u2014 medium."
+    },
+    {
+      "name": "Cardamom Tea (Large)",
+      "keywords": [
+        "cardamom tea large",
+        "large cardamom tea"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "tea",
+        "milk",
+        "cardamom",
+        "sugar"
+      ],
+      "description": "Fragrant cardamom tea \u2014 large."
+    },
+    {
+      "name": "Nepali Masala Tea (Small)",
+      "keywords": [
+        "nepali tea",
+        "nepali masala tea",
+        "nepali chai"
+      ],
+      "category": "beverages",
+      "price": 2.45,
+      "ingredients": [
+        "tea",
+        "milk",
+        "Nepali spices",
+        "ginger"
+      ],
+      "description": "Traditional Nepali spiced masala tea \u2014 small."
+    },
+    {
+      "name": "Nepali Masala Tea (Medium)",
+      "keywords": [
+        "nepali tea medium",
+        "nepali masala tea medium"
+      ],
+      "category": "beverages",
+      "price": 3.49,
+      "ingredients": [
+        "tea",
+        "milk",
+        "Nepali spices",
+        "ginger"
+      ],
+      "description": "Traditional Nepali spiced masala tea \u2014 medium."
+    },
+    {
+      "name": "Ice Cream (Baby)",
+      "keywords": [
+        "ice cream",
+        "baby ice cream",
+        "small ice cream scoop"
+      ],
+      "category": "beverages",
+      "price": 2.99,
+      "ingredients": [
+        "ice cream"
+      ],
+      "description": "Baby-size scoop of ice cream."
+    },
+    {
+      "name": "Ice Cream (Small)",
+      "keywords": [
+        "ice cream small",
+        "small ice cream"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "ice cream"
+      ],
+      "description": "Small scoop of ice cream."
+    },
+    {
+      "name": "Ice Cream (Huge)",
+      "keywords": [
+        "huge ice cream",
+        "large ice cream",
+        "big ice cream"
+      ],
+      "category": "beverages",
+      "price": 4.99,
+      "ingredients": [
+        "ice cream"
+      ],
+      "description": "Huge scoop of ice cream."
+    },
+    {
+      "name": "Smoothie",
+      "keywords": [
+        "smoothie",
+        "smoothies"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "fruit",
+        "milk",
+        "yogurt"
+      ],
+      "description": "Fresh blended fruit smoothie."
+    },
+    {
+      "name": "Milk Shake",
+      "keywords": [
+        "milkshake",
+        "milk shake",
+        "shake"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "milk",
+        "ice cream",
+        "flavoring"
+      ],
+      "description": "Thick and creamy milk shake."
+    },
+    {
+      "name": "Mango Lassi",
+      "keywords": [
+        "mango lassi",
+        "lassi",
+        "mango"
+      ],
+      "category": "beverages",
+      "price": 3.99,
+      "ingredients": [
+        "mango",
+        "yogurt",
+        "milk",
+        "sugar"
+      ],
+      "description": "Sweet and creamy mango lassi."
+    },
+    {
+      "name": "Aaloo Paratha (2pcs)",
+      "keywords": [
+        "aaloo paratha",
+        "aloo paratha",
+        "paratha",
+        "roti paratha"
+      ],
+      "category": "roti",
+      "price": 6.49,
+      "ingredients": [
+        "wheat flour",
+        "potato",
+        "spices",
+        "butter"
+      ],
+      "description": "Stuffed flatbread with spiced mashed potato, served with butter."
+    },
+    {
+      "name": "Plain Roti",
+      "keywords": [
+        "plain roti",
+        "roti",
+        "chapati"
+      ],
+      "category": "roti",
+      "price": 2.49,
+      "ingredients": [
+        "wheat flour",
+        "water",
+        "salt"
+      ],
+      "description": "Soft unleavened flatbread."
     }
   ]
 }
-
-
